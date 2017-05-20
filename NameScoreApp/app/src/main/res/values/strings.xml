@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">姓名診断</string>
+    <string name="title_activity_my_result">診断結果</string>
+
+</resources>
