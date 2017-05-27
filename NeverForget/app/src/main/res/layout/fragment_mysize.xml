@@ -1,0 +1,95 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView android:text ="@string/title_mysize" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/neck"
+            android:id="@+id/textView" />
+        <EditText
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editText1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/sleeve"
+            android:id="@+id/textView2"
+            android:layout_gravity="center_horizontal" />
+        <EditText
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editText2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+             android:layout_width="100dp"
+             android:layout_height="wrap_content"
+             android:text="@string/waist"
+             android:id="@+id/textView3"
+             android:layout_gravity="center_horizontal" />
+        <EditText
+             android:layout_width="60dp"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="20dp"
+             android:inputType="number"
+             android:ems="10"
+             android:id="@+id/editText3" />
+    </LinearLayout>
+
+    <LinearLayout
+         android:orientation="horizontal"
+         android:layout_marginTop="20dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_horizontal">
+
+        <TextView
+             android:layout_width="100dp"
+             android:layout_height="wrap_content"
+             android:text="@string/inside_leg"
+             android:id="@+id/textView4"
+             android:layout_gravity="center_horizontal" />
+        <EditText
+             android:layout_width="60dp"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="20dp"
+             android:inputType="number"
+             android:ems="10"
+             android:id="@+id/editText4" />
+    </LinearLayout>
+
+
+</LinearLayout>
