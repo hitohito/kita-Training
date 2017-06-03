@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.location.Location;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mapbox.mapboxsdk.Mapbox;
@@ -157,6 +158,15 @@ public class LogInActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 }.execute();
+            }
+        });
+        //画面遷移
+        TextView toSignUp= (TextView) this.findViewById(R.id.toSignUp);
+        toSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(LogInActivity.this, SignUpActivity.class);
+                startActivity(intent2);
             }
         });
     }

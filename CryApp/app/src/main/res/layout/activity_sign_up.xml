@@ -94,6 +94,17 @@ tools:context="com.example.tsunehitokita.cryapp.SignUpActivity">
                         android:text="新規登録"
                         android:layout_centerHorizontal="true"/>
 
+                    <TextView
+                        android:layout_below="@+id/SignUpButton"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/toLogIn"
+                        android:textSize="10dp"
+                        android:textColor="#4387E9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ログイン画面へ" />
+
                 </RelativeLayout>
 
 

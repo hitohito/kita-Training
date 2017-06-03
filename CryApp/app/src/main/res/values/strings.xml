@@ -4,4 +4,5 @@
     <string name="title_activity_cry">CryActivity</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="access_token">pk.eyJ1IjoidHN1bmVoaXRva2l0YSIsImEiOiJjajIwYXdpNmcwNDIzMzNrMjl2cGZxOTlkIn0.pqqRN33L3Hsng2tb-lq91Q</string>
+    <string name="style_mapbox">mapbox://styles/tsunehitokita/cj20b64yj001f2sp6ol7y7g6e</string>
 </resources>

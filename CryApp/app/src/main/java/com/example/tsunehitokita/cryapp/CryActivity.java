@@ -102,6 +102,17 @@ public class CryActivity extends AppCompatActivity implements
 //                new AsyncTask();
             }
         });
+
+        //ログアウト画面遷移
+        TextView logOut= (TextView) this.findViewById(R.id.logOut);
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(CryActivity.this, LogInActivity.class);
+                startActivity(intent2);
+            }
+        });
+
     }
 
     private void startFusedLocation() {
@@ -115,14 +126,14 @@ public class CryActivity extends AppCompatActivity implements
     //connectが終わったらonconnectedが呼ばれる。
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        Log.d("LocationActivity", "onConnected");
+
         Location currentLocation = fusedLocationProviderApi.getLastLocation(mGoogleApiClient);
+
         //ここなんだ
         location = currentLocation;
-        Log.d("LocationActivity", String.valueOf(location.getLatitude()));
-        Log.d("LocationActivity", String.valueOf(location.getLongitude()));
         myLatitude = toString().valueOf(location.getLatitude());
         myLongitude = toString().valueOf(location.getLongitude());
+        Log.d("LocationActivity", "onConnected");
 
         //ポスト処理
         new AsyncTask<Void, Void, String>() {

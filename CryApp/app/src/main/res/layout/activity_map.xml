@@ -27,6 +27,10 @@
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        mapbox:mapbox_styleUrl="@string/style_mapbox"
+        />
+
+
 
 </RelativeLayout>

@@ -1,14 +1,18 @@
 package com.example.tsunehitokita.cryapp;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 
+import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
@@ -16,6 +20,10 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +41,7 @@ public class MapActivity extends AppCompatActivity {
     private MapView mapView;
 
     //配列の宣言ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-    private ArrayList<String> locationArray ;
+    private JSONArray responseArray;
 
 
 
@@ -60,8 +68,7 @@ public class MapActivity extends AppCompatActivity {
 
                 mapboxMap.moveCamera(CameraUpdateFactory.newCameraPosition(
                         new CameraPosition.Builder()
-                        .target(new LatLng(myLatitude,myLongitude))
-                        .build()
+                        .target(new LatLng(myLatitude,myLongitude)).zoom(12).build()
                 ));
                 //地図読込完了...
             }
@@ -72,6 +79,7 @@ public class MapActivity extends AppCompatActivity {
         new AsyncTask<Void, Void, String>() {
             @Override
             protected String doInBackground(Void... params) {
+                Log.d("debug", "\n\n\n\n\n1");
                 String result = null;
 
                 // リクエストオブジェクトを作って
@@ -86,24 +94,11 @@ public class MapActivity extends AppCompatActivity {
                 // リクエストして結果を受け取って
                 try {
                     Response response = client.newCall(request).execute();
-                    result = response.body().string();
-                    //配列のインスタンスを作る
-                    locationArray = new ArrayList<String>();
-                    //locationArrayにresponseを格納
-                    //ここで返ってきた緯度経度を上の配列に入れる。入れ子ね。ここも繰り返し文
-                    for (int i = 0; i < locationArray.size(); i++)
-                    locationArray.add(response.body()[i]);
-
-
-
-//                    LinkedList<ResponseBody> longi = new LinkedList<>();
-//                    LinkedList<ResponseBody> lati  = new LinkedList<>();
-//                    for (int i = 0; i < result.length(); i++) //ここ、配列を文字列型にして間違ってるはず。
-//                    longi.add(response.body()[i].longitude);
-//                    for (int h = 0; h < result.length(); h++) //ここ、配列を文字列型にして間違ってるはず。
-//                    lati.add(response.body()[h].latitude);
-
+                    String json = response.body().string();
+                    responseArray = new JSONArray(json);
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
@@ -113,12 +108,6 @@ public class MapActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(String result) {
-                Log.d("TAG", result);
-
-                Log.d("TAG", String.valueOf(locationArray));
-
-
-
                 addPoint(savedInstanceState);
             }
 
@@ -132,11 +121,29 @@ public class MapActivity extends AppCompatActivity {
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull MapboxMap mapboxMap) {
+                Log.d("debug", "\n\n\n\n\n3");
+                for (int i = 0; i < responseArray.length(); i++) {
+                    Log.d("debug", "\n\n\n\n\n3");
+                    try {
+                        JSONObject data = responseArray.getJSONObject(i);
+                        double latitudes = Double.parseDouble(data.getString("latitude"));
+                        double longitudes = Double.parseDouble(data.getString("longitude"));
+                        Log.d("debug", "\n\n\n\n\n4");
+//                        mapboxMap.addMarker(new MarkerOptions()
+//                                .position(new LatLng(latitudes, longitudes)) );
 
-                for (int i = 0; i < locationArray.size(); i++)
-                mapboxMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(locationArray[i].latitude,locationArray[i].longitude))
-                );
+                        IconFactory iconFactory = IconFactory.getInstance(MapActivity.this);
+                        com.mapbox.mapboxsdk.annotations.Icon icon = iconFactory.fromResource(R.drawable.red2);
+
+                        mapboxMap.addMarker(new MarkerOptions()
+                                .position(new LatLng(latitudes, longitudes))
+                                .icon(icon));
+                        Log.d("debug", "=========");
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
     }
