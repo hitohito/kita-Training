@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="com.example.tsunehitokita.cryapp.SignUpActivity">
+
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/titleSignUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="Cry"
+                        android:textSize="50dp"
+                        android:layout_marginTop="80dp"
+                        android:layout_marginBottom="80dp"/>
+
+                    <TextView
+                        android:layout_below="@+id/titleSignUp"
+                        android:id="@+id/userNameSignUp"
+                        android:textSize="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ユーザーネーム" />
+
+                    <EditText
+                        android:layout_below="@+id/userNameSignUp"
+                        android:id="@+id/EditUserNameSignUp"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10" />
+
+                    <TextView
+                        android:layout_below="@+id/EditUserNameSignUp"
+                        android:id="@+id/emailSignUp"
+                        android:textSize="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="メールアドレス" />
+
+                    <EditText
+                        android:layout_below="@+id/emailSignUp"
+                        android:id="@+id/EditEmailSignUp"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textEmailAddress" />
+
+                    <TextView
+                        android:layout_below="@+id/EditEmailSignUp"
+                        android:id="@+id/passwordSignUp"
+                        android:textSize="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="パスワード" />
+
+                    <EditText
+                        android:layout_below="@+id/passwordSignUp"
+                        android:id="@+id/EditPasswordSignUp"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="numberPassword" />
+
+
+                    <Button
+                        android:layout_below="@+id/EditPasswordSignUp"
+                        android:id="@+id/SignUpButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="新規登録"
+                        android:layout_centerHorizontal="true"/>
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>
