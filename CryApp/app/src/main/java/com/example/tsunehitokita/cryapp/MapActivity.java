@@ -1,8 +1,6 @@
 package com.example.tsunehitokita.cryapp;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Icon;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -26,14 +24,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
-//import com.mapbox.mapboxsdk.MapboxAccountManager;
 
 
 public class MapActivity extends AppCompatActivity {
@@ -121,7 +114,7 @@ public class MapActivity extends AppCompatActivity {
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull MapboxMap mapboxMap) {
-                Log.d("debug", "\n\n\n\n\n3");
+                Log.d("======================", "\n\n\n\n\n3");
                 for (int i = 0; i < responseArray.length(); i++) {
                     Log.d("debug", "\n\n\n\n\n3");
                     try {
@@ -129,8 +122,6 @@ public class MapActivity extends AppCompatActivity {
                         double latitudes = Double.parseDouble(data.getString("latitude"));
                         double longitudes = Double.parseDouble(data.getString("longitude"));
                         Log.d("debug", "\n\n\n\n\n4");
-//                        mapboxMap.addMarker(new MarkerOptions()
-//                                .position(new LatLng(latitudes, longitudes)) );
 
                         IconFactory iconFactory = IconFactory.getInstance(MapActivity.this);
                         com.mapbox.mapboxsdk.annotations.Icon icon = iconFactory.fromResource(R.drawable.red2);

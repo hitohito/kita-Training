@@ -7,7 +7,6 @@ android:layout_height="match_parent"
 tools:context="com.example.tsunehitokita.cryapp.SignUpActivity">
 
 
-
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">

@@ -3,33 +3,31 @@ package com.example.tsunehitokita.cryapp;
 import android.*;
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.location.LocationListener;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.location.Location;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mapbox.mapboxsdk.Mapbox;
 
 import java.io.IOException;
-import java.util.jar.*;
+
 
 import okhttp3.FormBody;
-import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
+import static com.example.tsunehitokita.cryapp.MainActivity.PREFERENCES_FILE_NAME;
 
 
 public class LogInActivity extends AppCompatActivity {
@@ -42,9 +40,6 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        // MapBoxのアクセストークン
-        Mapbox.getInstance(this, getString(R.string.access_token));
-
 
 
         if(Build.VERSION.SDK_INT >= 23){
@@ -54,12 +49,15 @@ public class LogInActivity extends AppCompatActivity {
             //何もしない
         }
 
+
         initButtons();
+
+
 
     }
 
     public void checkPermission(){
-        //これなんだ
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
             //なにもしない
         }
@@ -153,11 +151,24 @@ public class LogInActivity extends AppCompatActivity {
                     protected void onPostExecute(String result) {
                         Log.d("TAG", result);
 
+
+                        //ログインをpreferenceに保存
+                        login();
+
                         //画面遷移（成功したらを書き足す）
                         Intent intent = new Intent(LogInActivity.this, CryActivity.class);
                         startActivity(intent);
                     }
+                    // ログイン処理をpreferenceに
+                    public void login() {
+                        SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE_NAME, 0); // 0 -> MODE_PRIVATE
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putLong("logged-in", 1);
+                        editor.commit();
+                    }
+
                 }.execute();
+
             }
         });
         //画面遷移
@@ -171,3 +182,7 @@ public class LogInActivity extends AppCompatActivity {
         });
     }
 }
+
+
+
+
